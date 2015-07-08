@@ -2,10 +2,7 @@ package com.tw.core.dao;
 
 import com.tw.core.entity.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,18 +29,30 @@ public class UserDao {
             User user = new User(rs.getInt("id"), rs.getString("name"), rs.getNString("gender"), rs.getNString("email"), rs.getInt("age"));
             usersList.add(user);
         }
+
+        st.close();
+        connection.close();
         return usersList;
     }
 
-    public Boolean deleteUser(int id) throws SQLException {
+    public void deleteUser(int id) throws SQLException {
 
         DBConnection dbConnection = new DBConnection();
         Connection connection = dbConnection.getConnection();
 
-        String sql = "DELETE *FROM user WHERE id = 'id'";
+        String sql = "delete from user where id=?";
+        PreparedStatement st = connection.prepareStatement(sql);
+        st.setInt(1, id);
+        int rows = st.executeUpdate();
+        if(rows > 0) {
+            System.out.println("delete successfully!!");
+        }
+        st.close();
+        connection.close();
+    }
+    
 
-        Statement st = connection.createStatement();
-        boolean rs = st.execute(sql);
-        return rs;
+    public static void main(String[] args) throws SQLException {
+        new UserDao().deleteUser(1);
     }
 }
