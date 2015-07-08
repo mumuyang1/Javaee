@@ -15,7 +15,7 @@
 
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -23,7 +23,7 @@
     </servlet-mapping>
 
     
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>index.jsp</welcome-file>-->
+    <!--</welcome-file-list>-->
 </web-app>

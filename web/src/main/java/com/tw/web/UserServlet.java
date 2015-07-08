@@ -23,6 +23,5 @@ public class UserServlet  extends HttpServlet{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
     }
 }
