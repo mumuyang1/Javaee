@@ -11,14 +11,20 @@ import java.util.List;
  */
 public class UserService {
 
+    private UserDao userDao = new UserDao();
+
     public List<User> getUsers() {
 
-        return new UserDao().getUsers();
+        return userDao.getUsers();
     }
 
     public void deleteUserBy(int id) throws SQLException {
 
-        UserDao userDao = new UserDao();
         userDao.deleteUser(id);
+    }
+
+    public void insertUser(User user){
+
+        userDao.insertUser(user);
     }
 }

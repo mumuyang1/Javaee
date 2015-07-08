@@ -15,7 +15,6 @@ public class HelloServlet extends HttpServlet {
 
         req.setAttribute("usersList",userService.getUsers());
 
-        System.out.println("-------------");
         req.getRequestDispatcher("index.jsp").forward(req,res);
     }
 }

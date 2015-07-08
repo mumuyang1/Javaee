@@ -32,11 +32,11 @@
     <td><c:out value="${user.gender}" /></td>
     <td><c:out value="${user.mailbox}" /></td>
     <td><c:out value="${user.age}" /></td>
-    <td><a  href="/web/deleteUser?userId=<c:out value="user.getUserId()" />">删除</a></td>
+    <td><a  href="/web/deleteUser?userId=<c:out value="${user.userId}" />">删除</a></td>
     <%--<td><input type="button" onclick="<% userDao.deleteUser(user.getUserId());%>" value="删除"></td>--%>
    </tr>
   </c:forEach>
-</table>
+</table></br>
 
 <button type="button" onclick="location = 'insertUser.jsp'">增加用户</button>
 
