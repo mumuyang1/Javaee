@@ -8,14 +8,14 @@ public class User {
     private int userId;
     private String name;
     private String gender;
-    private String email;
+    private String mailbox;
     private int age;
 
-    public User(int userId, String name, String gender, String email, int age) {
+    public User(int userId, String name, String gender, String mailbox, int age) {
         this.userId = userId;
         this.name = name;
         this.gender = gender;
-        this.email = email;
+        this.mailbox = mailbox;
         this.age = age;
     }
 
@@ -44,12 +44,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMailbox() {
+        return mailbox;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMailbox(String mailbox) {
+        this.mailbox = mailbox;
     }
 
     public int getAge() {

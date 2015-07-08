@@ -11,27 +11,29 @@ import java.util.List;
  */
 public class UserDao {
 
-    public List<User> getUsers() throws SQLException {
+    public List<User> getUsers(){
 
         List<User> usersList = new ArrayList<User>();
 
         DBConnection dbConnection = new DBConnection();
         Connection connection = dbConnection.getConnection();
 
-        String sql = "SELECT * FROM user";
+        String sql = "SELECT * FROM users";
 
-        Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery(sql);
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
 
-
-        while (rs.next()) {
-
-            User user = new User(rs.getInt("id"), rs.getString("name"), rs.getNString("gender"), rs.getNString("email"), rs.getInt("age"));
-            usersList.add(user);
+                User user = new User(rs.getInt("id"), rs.getString("name"), rs.getNString("gender"), rs.getNString("mailbox"), rs.getInt("age"));
+                usersList.add(user);
+            }
+            st.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        st.close();
-        connection.close();
         return usersList;
     }
 
@@ -40,7 +42,7 @@ public class UserDao {
         DBConnection dbConnection = new DBConnection();
         Connection connection = dbConnection.getConnection();
 
-        String sql = "delete from user where id=?";
+        String sql = "delete from users where id=?";
         PreparedStatement st = connection.prepareStatement(sql);
         st.setInt(1, id);
         int rows = st.executeUpdate();
@@ -50,9 +52,28 @@ public class UserDao {
         st.close();
         connection.close();
     }
-    
 
-    public static void main(String[] args) throws SQLException {
-        new UserDao().deleteUser(1);
+    public void insertUser(String name, String gender, String mailbox, int age) throws SQLException {
+        DBConnection dbConnection = new DBConnection();
+        Connection connection = dbConnection.getConnection();
+
+        String sql = "insert into users(id,name,gender,mailbox,age) values(?,?,?,?,?)";
+        PreparedStatement sta = connection.prepareStatement(sql);
+        sta.setString(1, null);
+        sta.setString(2, name);
+        sta.setString(3, gender);
+        sta.setString(4, mailbox);
+        sta.setInt(5, age);
+        int rows = sta.executeUpdate();
+        if(rows > 0) {
+            System.out.println("operate successfully!");
+        }
+        sta.close();
+        connection.close();
+
     }
+
+//    public static void main(String[] args) throws SQLException {
+//        new UserDao().deleteUser(1);
+//    }
 }
