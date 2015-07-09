@@ -78,21 +78,31 @@ public class UserDao {
     }
 
 
-    public void deleteUser(int id) throws SQLException {
+    public void deleteUser(int id) {
 
         DBConnection dbConnection = new DBConnection();
         Connection connection = dbConnection.getConnection();
 
         String sql = "delete from users where id = ?";
-        PreparedStatement st = connection.prepareStatement(sql);
-        st.setInt(1, id);
-        int rows = st.executeUpdate();
+        PreparedStatement st = null;
+        try {
+            st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            int rows = st.executeUpdate();
 
-        if (rows > 0) {
-            System.out.println("delete successfully!!");
+            if (rows > 0) {
+                System.out.println("delete successfully!!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                st.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        st.close();
-        connection.close();
     }
 
     public void insertUser(User user) {

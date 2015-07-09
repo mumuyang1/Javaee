@@ -3,7 +3,6 @@ package com.tw.core.service;
 import com.tw.core.dao.UserDao;
 import com.tw.core.entity.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class UserService {
         return userDao.getUsers();
     }
 
-    public void deleteUserBy(int id) throws SQLException {
+    public void deleteUserBy(int id){
 
         userDao.deleteUser(id);
     }
