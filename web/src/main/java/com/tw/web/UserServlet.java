@@ -15,10 +15,12 @@ import java.io.IOException;
 public class UserServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("userId"));
-        UserService userService = new UserService();
 
+        int id = Integer.parseInt(req.getParameter("userId"));
+
+        UserService userService = new UserService();
         userService.deleteUserBy(id);
+
         res.sendRedirect("/web");
     }
 
@@ -36,6 +38,4 @@ public class UserServlet extends HttpServlet {
 
         res.sendRedirect("/web");
     }
-
-
 }

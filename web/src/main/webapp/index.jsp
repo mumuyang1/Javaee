@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<table align="center" border="2" bgcolor="#f4a460">
+<table align="center" border="2" bgcolor="#ffc0cb">
   <tr align="center">
     <td>姓名</td>
     <td>性别</td>
@@ -35,13 +35,13 @@
     <td><c:out value="${user.age}" /></td>
     <td><a  href="/web/deleteUser?userId=<c:out value="${user.userId}" />">删除</a></td>
     <td>
-      <button type="button" style="border-color: #269abc" align="center" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
+      <button type="button" style="border-color: white" align="center" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
                </td>
    </tr>
   </c:forEach>
 </table></br>
 
-<div align="center"><button type="button" style="border-color: #269abc" onclick="location = 'insertUser.jsp'">增加用户</button></div>
+<div align="center"><button type="button" style="border-color: pink" onclick="location = 'insertUser.jsp'">增加用户</button></div>
 
 </body>
 </html>

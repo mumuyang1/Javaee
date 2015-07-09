@@ -24,12 +24,12 @@
 
     <input type="text" name="id" value="${user.userId}" hidden="hidden" />
 
-    姓   名: <input type="text" name="name" value="${user.name}">
+    姓   名: <input style="border-color: pink" type="text" name="name" value="${user.name}">
     性   别:男<input name="gender" type="radio" value="男" <c:if test="${user.gender == '男'}">checked </c:if>/>
             女<input name="gender" type="radio" value="女" <c:if test="${user.gender == '女'}">checked </c:if>/>
-    邮   箱: <input type="text" name="mailbox" value="${user.mailbox}">
-    年   龄: <input type="number" min="1" max="110" name="age" value="${user.age}"/>
-    <input type="submit" value="确定" />
+    邮   箱: <input style="border-color: pink" type="text" name="mailbox" value="${user.mailbox}">
+    年   龄: <input style="border-color: pink" type="number" min="1" max="110" name="age" value="${user.age}"/>
+    <input style="border-color: wheat"  type="submit" value="确定" />
 
 </form>
 
