@@ -18,8 +18,8 @@
 </head>
 <body>
 
-<table border="1">
-  <tr>
+<table align="center" border="1">
+  <tr align="center">
     <td>姓名</td>
     <td>性别</td>
     <td>邮箱</td>
@@ -28,14 +28,14 @@
     <td>更新用户信息</td>
   </tr>
   <c:forEach var = "user" items="${usersList}" >
-  <tr>
+  <tr align="center">
     <td><c:out value="${user.name}" /></td>
     <td><c:out value="${user.gender}" /></td>
     <td><c:out value="${user.mailbox}" /></td>
     <td><c:out value="${user.age}" /></td>
     <td><a  href="/web/deleteUser?userId=<c:out value="${user.userId}" />">删除</a></td>
     <td>
-      <button type="button" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
+      <button type="button" align="center" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
                </td>
     <%--<td><input type="button" onclick="<% userDao.deleteUser(user.getUserId());%>" value="删除"></td>--%>
    </tr>
