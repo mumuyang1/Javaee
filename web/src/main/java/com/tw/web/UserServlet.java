@@ -9,19 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by yzli on 7/8/15.
- */
 public class UserServlet extends HttpServlet {
+
+    private UserService userService = new UserService();
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        int id = Integer.parseInt(req.getParameter("userId"));
-
-        UserService userService = new UserService();
-        userService.deleteUserBy(id);
-
-        res.sendRedirect("/web");
+        req.setAttribute("usersList", userService.getUsers());
+        req.getRequestDispatcher("index.jsp").forward(req, res);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
