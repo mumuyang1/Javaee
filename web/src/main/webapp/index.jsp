@@ -37,7 +37,6 @@
     <td>
       <button type="button" style="border-color: #269abc" align="center" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
                </td>
-    <%--<td><input type="button" onclick="<% userDao.deleteUser(user.getUserId());%>" value="删除"></td>--%>
    </tr>
   </c:forEach>
 </table></br>

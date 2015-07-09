@@ -14,7 +14,7 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        req.setAttribute("usersList",userService.getUsers());
-        req.getRequestDispatcher("index.jsp").forward(req,res);
+        req.setAttribute("usersList", userService.getUsers());
+        req.getRequestDispatcher("index.jsp").forward(req, res);
     }
 }

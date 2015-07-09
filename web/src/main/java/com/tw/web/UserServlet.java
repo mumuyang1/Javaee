@@ -18,22 +18,19 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("userId"));
         UserService userService = new UserService();
 
-
-            userService.deleteUserBy(id);
-            res.sendRedirect("/web");
-
+        userService.deleteUserBy(id);
+        res.sendRedirect("/web");
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-
-        System.out.println("99999999999");
         String name = req.getParameter("name");
-        System.out.println(name);
         String gender = req.getParameter("gender");
         String mailbox = req.getParameter("mailbox");
         int age = Integer.parseInt(req.getParameter("age"));
-        User  user = new User(name,gender,mailbox,age);
+
+        User user = new User(name, gender, mailbox, age);
+
         UserService userService = new UserService();
         userService.insertUser(user);
 

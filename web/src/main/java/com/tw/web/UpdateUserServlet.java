@@ -22,22 +22,20 @@ public class UpdateUserServlet extends HttpServlet {
         req.getRequestDispatcher("updateUser.jsp").forward(req, res);
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         String name = req.getParameter("name");
         String gender = req.getParameter("gender");
         String mailbox = req.getParameter("mailbox");
         int age = Integer.parseInt(req.getParameter("age"));
         int id = Integer.parseInt(req.getParameter("id"));
+
         User user = new User(id, name, gender, mailbox, age);
+
         UserService userService = new UserService();
         userService.updateUser(user);
 
-        try {
-            res.sendRedirect("/web");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        res.sendRedirect("/web");
     }
 }
 

@@ -10,13 +10,12 @@ import java.util.List;
  */
 public class UserService {
 
-//    private UserDao userDao = new UserDao();
+    //    private UserDao userDao = new UserDao();
     private HibernateUserDao hibernateUserDao = new HibernateUserDao();
 
     public List<User> getUsers() {
 
         return hibernateUserDao.getUsers();
-
     }
 
     public void deleteUserBy(int id) {

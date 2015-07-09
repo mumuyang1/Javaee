@@ -32,7 +32,7 @@ public class UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 st.close();
                 connection.close();
@@ -95,7 +95,7 @@ public class UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 st.close();
                 connection.close();
@@ -125,7 +125,7 @@ public class UserDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 sta.close();
                 connection.close();
@@ -153,7 +153,7 @@ public class UserDao {
             System.out.print(row);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 preparedStatement.close();
                 connection.close();
