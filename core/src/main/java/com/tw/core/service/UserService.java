@@ -27,4 +27,14 @@ public class UserService {
 
         userDao.insertUser(user);
     }
+
+    public void updateUser(User user){
+
+        userDao.updateUser(user);
+    }
+
+    public User getUserBy(int id){
+
+        return userDao.getUserById(id);
+    }
 }

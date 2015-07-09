@@ -25,6 +25,7 @@
     <td>邮箱</td>
     <td>年龄</td>
     <td>删除</td>
+    <td>更新用户信息</td>
   </tr>
   <c:forEach var = "user" items="${usersList}" >
   <tr>
@@ -33,6 +34,9 @@
     <td><c:out value="${user.mailbox}" /></td>
     <td><c:out value="${user.age}" /></td>
     <td><a  href="/web/deleteUser?userId=<c:out value="${user.userId}" />">删除</a></td>
+    <td>
+      <button type="button" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
+               </td>
     <%--<td><input type="button" onclick="<% userDao.deleteUser(user.getUserId());%>" value="删除"></td>--%>
    </tr>
   </c:forEach>

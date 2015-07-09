@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class HelloServlet extends HttpServlet {
+
+    private UserService userService = new UserService();
+
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        UserService userService = new UserService();
-
         req.setAttribute("usersList",userService.getUsers());
-
         req.getRequestDispatcher("index.jsp").forward(req,res);
     }
 }

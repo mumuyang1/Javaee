@@ -11,6 +11,9 @@ public class User {
     private String mailbox;
     private int age;
 
+    public User() {
+    }
+
     public User(int userId, String name, String gender, String mailbox, int age) {
         this.userId = userId;
         this.name = name;
