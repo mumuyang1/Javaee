@@ -1,6 +1,6 @@
 package com.tw.core.service;
 
-import com.tw.core.dao.UserDao;
+import com.tw.core.dao.hibernateDao.HibernateUserDao;
 import com.tw.core.entity.User;
 
 import java.util.List;
@@ -10,30 +10,32 @@ import java.util.List;
  */
 public class UserService {
 
-    private UserDao userDao = new UserDao();
+//    private UserDao userDao = new UserDao();
+    private HibernateUserDao hibernateUserDao = new HibernateUserDao();
 
     public List<User> getUsers() {
 
-        return userDao.getUsers();
+        return hibernateUserDao.getUsers();
+
     }
 
-    public void deleteUserBy(int id){
+    public void deleteUserBy(int id) {
 
-        userDao.deleteUser(id);
+        hibernateUserDao.deleteUserById(id);
     }
 
-    public void insertUser(User user){
+    public void insertUser(User user) {
 
-        userDao.insertUser(user);
+        hibernateUserDao.insertUser(user);
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
 
-        userDao.updateUser(user);
+        hibernateUserDao.updateUser(user);
     }
 
-    public User getUserBy(int id){
+    public User getUserBy(int id) {
 
-        return userDao.getUserById(id);
+        return hibernateUserDao.getUserById(id);
     }
 }

@@ -5,13 +5,15 @@ buildscript {
     dependencies {
         classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
     }
-
 }
 
 dependencies {
     testCompile 'junit:junit:4.10'
     compile 'mysql:mysql-connector-java:5.1.34'
     compile 'org.flywaydb:flyway-core:3.2.1'
+    compile 'org.hibernate:hibernate-core:4.3.10.Final'
+    compile 'org.javassist:javassist:3.15.0-GA'
+    compile 'org.slf4j:slf4j-simple:1.7.7'
 }
 
 apply plugin: 'org.flywaydb.flyway'

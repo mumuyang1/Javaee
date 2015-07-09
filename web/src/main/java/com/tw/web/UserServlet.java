@@ -27,7 +27,9 @@ public class UserServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 
+        System.out.println("99999999999");
         String name = req.getParameter("name");
+        System.out.println(name);
         String gender = req.getParameter("gender");
         String mailbox = req.getParameter("mailbox");
         int age = Integer.parseInt(req.getParameter("age"));
