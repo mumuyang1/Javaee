@@ -15,7 +15,7 @@
         <property name="connection.username">root</property>
         <!--显示执行的SQL语句-->
         <property name="connection.password"></property>
-        <!--<property name="org"></property>-->
+
         <property name="hibernate.current_session_context_class">thread</property>
         <!--映射文件-->
         <mapping resource="user.hbm.xml"/>
