@@ -1,16 +1,16 @@
 package com.tw.core.dao.hibernateDao;
 
 import com.tw.core.entity.User;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by yzli on 7/9/15.
  */
-
+@Repository
 public class HibernateUserDao {
 
     public void insertUser(User user) {

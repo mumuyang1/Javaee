@@ -33,7 +33,7 @@
     <td><c:out value="${user.gender}" /></td>
     <td><c:out value="${user.mailbox}" /></td>
     <td><c:out value="${user.age}" /></td>
-    <td><a  href="/web/deleteUser?userId=<c:out value="${user.userId}" />">删除</a></td>
+    <td><a  href="./deleteUser?userId=<c:out value="${user.userId}" />">删除</a></td>
     <td>
       <button type="button" style="border-color: white" align="center" onclick="location = '/web/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
                </td>

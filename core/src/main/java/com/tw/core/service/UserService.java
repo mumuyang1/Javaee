@@ -2,16 +2,20 @@ package com.tw.core.service;
 
 import com.tw.core.dao.hibernateDao.HibernateUserDao;
 import com.tw.core.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by yzli on 7/8/15.
  */
+@Service
 public class UserService {
 
     //    private UserDao userDao = new UserDao();
-    private HibernateUserDao hibernateUserDao = new HibernateUserDao();
+//    private HibernateUserDao hibernateUserDao = new HibernateUserDao();
+    @Autowired private HibernateUserDao hibernateUserDao;
 
     public List<User> getUsers() {
 
