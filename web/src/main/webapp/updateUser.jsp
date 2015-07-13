@@ -1,4 +1,3 @@
-<%@ page import="com.tw.core.dao.UserDao" %>
 <%@ page import="com.tw.core.entity.User" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c"

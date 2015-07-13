@@ -14,9 +14,6 @@ dependencies {
     compile 'org.hibernate:hibernate-core:4.3.10.Final'
     compile 'org.slf4j:slf4j-simple:1.7.7'
     compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
-//    compile 'org.springframework:spring-context:4.1.6.RELEASE'
-    compile 'org.springframework.data:spring-data-jpa:1.0.0.RELEASE'
-//    compile 'org.springframework:spring-web:4.1.6.RELEASE'
 }
 
 apply plugin: 'org.flywaydb.flyway'

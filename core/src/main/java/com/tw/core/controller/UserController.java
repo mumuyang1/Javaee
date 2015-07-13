@@ -22,9 +22,12 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView showIndex() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+//        modelAndView.setViewName("index");
+////        modelAndView.addObject( " 需要放到 model 中的属性名称 " , " 对应的属性值，它是一个对象 " );
+//        modelAndView.addObject( "usersList" , userService.getUsers());
+        modelAndView.setViewName("login");
 //        modelAndView.addObject( " 需要放到 model 中的属性名称 " , " 对应的属性值，它是一个对象 " );
-        modelAndView.addObject( "usersList" , userService.getUsers());
+//        modelAndView.addObject( "usersList" , userService.getUsers());
         return modelAndView;
     }
 
