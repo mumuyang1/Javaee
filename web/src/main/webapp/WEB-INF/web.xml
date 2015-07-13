@@ -7,10 +7,6 @@
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/spring-servlet.xml</param-value>
-        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -28,41 +24,3 @@
         <param-value>/WEB-INF/spring-servlet.xml</param-value>
     </context-param>
 </web-app>
-
-        <!--servlet-->
-        <!--<?xml version="1.0" encoding="ISO-8859-1"?>-->
-
-        <!--<web-app xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4"-->
-        <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-        <!--xmlns:mvc="http://www.springframework.org/schema/mvc"-->
-        <!--xsi:schemaLocation="http:/java.sun.com/dtd/web-app_2_3.dtd">-->
-        <!--<servlet>-->
-        <!--<servlet-name>UserServlet</servlet-name>-->
-        <!--<servlet-class>com.tw.web.UserServlet</servlet-class>-->
-        <!--</servlet>-->
-        <!--<servlet>-->
-        <!--<servlet-name>DeleteServlet</servlet-name>-->
-        <!--<servlet-class>com.tw.web.DeleteUserServlet</servlet-class>-->
-        <!--</servlet>-->
-        <!--<servlet>-->
-        <!--<servlet-name>UpdateServlet</servlet-name>-->
-        <!--<servlet-class>com.tw.web.UpdateUserServlet</servlet-class>-->
-        <!--</servlet>-->
-
-        <!--<servlet-mapping>-->
-        <!--<servlet-name>UserServlet</servlet-name>-->
-        <!--<url-pattern>/</url-pattern>-->
-        <!--</servlet-mapping>-->
-        <!--<servlet-mapping>-->
-        <!--<servlet-name>DeleteServlet</servlet-name>-->
-        <!--<url-pattern>/deleteUser</url-pattern>-->
-        <!--</servlet-mapping>-->
-        <!--<servlet-mapping>-->
-        <!--<servlet-name>UpdateServlet</servlet-name>-->
-        <!--<url-pattern>/update</url-pattern>-->
-        <!--</servlet-mapping>-->
-
-        <!--<welcome-file-list>-->
-        <!--<welcome-file>index.jsp</welcome-file>-->
-        <!--</welcome-file-list>-->
-        <!--</web-app>-->
