@@ -3,40 +3,35 @@ package com.tw.core.controller;
 import com.tw.core.entity.User;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by yzli on 7/12/15.
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView showIndex() {
         ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("index");
-////        modelAndView.addObject( " 需要放到 model 中的属性名称 " , " 对应的属性值，它是一个对象 " );
-//        modelAndView.addObject( "usersList" , userService.getUsers());
-        modelAndView.setViewName("login");
+        modelAndView.setViewName("index");
 //        modelAndView.addObject( " 需要放到 model 中的属性名称 " , " 对应的属性值，它是一个对象 " );
-//        modelAndView.addObject( "usersList" , userService.getUsers());
+        modelAndView.addObject( "usersList" , userService.getUsers());
+
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
-    public ModelAndView deleteUser(@RequestParam int userId) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus( HttpStatus.OK )
+    public void deleteUser(@PathVariable( "id" ) int id) {
 
-        userService.deleteUserBy(userId);
-
-        return new ModelAndView("redirect:/");
+        userService.deleteUserBy(id);
     }
 
     @RequestMapping(value = "/insertUser", method = RequestMethod.POST)
@@ -46,12 +41,21 @@ public class UserController {
 
         userService.insertUser(user);
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/users");
+    }
+
+    @RequestMapping(value = "/insertUser", method = RequestMethod.GET)
+    public ModelAndView  getInsertPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("insertUser");
+
+        return modelAndView;
     }
 
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView  getUserById(@RequestParam int userId) {
+    public ModelAndView getUserById(@RequestParam int userId) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("updateUser");
@@ -68,6 +72,6 @@ public class UserController {
 
         userService.updateUser(user);
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/users");
     }
 }

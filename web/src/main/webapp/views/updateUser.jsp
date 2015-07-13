@@ -19,7 +19,7 @@
 
 <h3>更新用户信息</h3>
 
-<form action="/web/update" method="post">
+<form action="/web/users/update" method="post">
 
     <input type="text" name="id" value="${user.userId}" hidden="hidden" />
 
