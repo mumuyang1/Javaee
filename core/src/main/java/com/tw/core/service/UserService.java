@@ -41,4 +41,9 @@ public class UserService {
 
         return hibernateUserDao.getUserById(id);
     }
+
+    public boolean login(String name, String password){
+
+        return  hibernateUserDao.login(name,password);
+    }
 }

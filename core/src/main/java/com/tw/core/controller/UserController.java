@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by yzli on 7/12/15.
  */
@@ -18,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView showIndex() {
+    public ModelAndView showIndex(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
 //        modelAndView.addObject( " 需要放到 model 中的属性名称 " , " 对应的属性值，它是一个对象 " );

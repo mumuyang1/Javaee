@@ -9,5 +9,6 @@
         <property name="gender" column="gender" />
         <property name="mailbox" column="mailbox" />
         <property name="age" column="age" />
+        <property name="password" column="password" />
     </class>
 </hibernate-mapping>

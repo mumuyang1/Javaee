@@ -10,6 +10,7 @@ public class User {
     private String gender;
     private String mailbox;
     private int age;
+    private String password;
 
     public User() {
     }
@@ -69,5 +70,30 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User(int userId, String name, String gender, String mailbox, int age, String password) {
+        this.userId = userId;
+        this.name = name;
+        this.gender = gender;
+        this.mailbox = mailbox;
+        this.age = age;
+        this.password = password;
+    }
+
+    public User(String name, String gender, String mailbox, int age, String password) {
+        this.name = name;
+        this.gender = gender;
+        this.mailbox = mailbox;
+        this.age = age;
+        this.password = password;
     }
 }

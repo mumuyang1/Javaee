@@ -20,7 +20,6 @@ public class HibernateUserDao {
 
         session.save(user);
         session.getTransaction().commit();
-//        HibernateUtil.getSessionFactory().close();
     }
 
     public void deleteUserById(int id) {
@@ -30,7 +29,6 @@ public class HibernateUserDao {
         User user = (User) session.load(User.class, id);
         session.delete(user);
         session.getTransaction().commit();
-//        HibernateUtil.getSessionFactory().close();
     }
 
     public List<User> getUsers() {
@@ -56,7 +54,6 @@ public class HibernateUserDao {
         session.update(user);
 
         session.getTransaction().commit();
-//        HibernateUtil.getSessionFactory().close();
     }
 
     public User getUserById(int id) {
@@ -67,8 +64,35 @@ public class HibernateUserDao {
         User user = (User) session.get(User.class, id);
 
         session.getTransaction().commit();
-//        HibernateUtil.getSessionFactory().close();
+
         return user;
+    }
+
+    public boolean login (String name, String password){
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("SELECT count(*) FROM User user where user.name = :name and user.password = :password");
+
+        query.setParameter("name", name);
+        query.setParameter("password", password);
+
+        Long count = (Long)query.uniqueResult();
+
+        System.out.println(count);
+
+        if (count == 0){
+            return false;
+        }
+        session.getTransaction().commit();
+
+        return  true;
+    }
+
+    public static void main(String[] args){
+
+        System.out.println(new HibernateUserDao().login("薛倩","123456"));
     }
 
 }
