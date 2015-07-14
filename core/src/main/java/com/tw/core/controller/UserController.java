@@ -53,14 +53,13 @@ public class UserController {
         return new ModelAndView("redirect:/users");
     }
 
-    @RequestMapping(value = "/insertUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/creation", method = RequestMethod.GET)
     public ModelAndView  getInsertPage( HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
         String user = (String)session.getAttribute("user");
 
         if(user == "login"){
-
             modelAndView.setViewName("insertUser");
             return modelAndView;
         }else {

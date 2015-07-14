@@ -37,7 +37,7 @@
   </c:forEach>
 </table></br>
 
-<div align="center"><button type="button" style="border-color: pink" onclick="location = '/web/users/insertUser'">增加用户</button></div>
+<div align="center"><button type="button" style="border-color: pink" onclick="location = '/web/users/creation'">增加用户</button></div>
 
 </body>
 </html>
