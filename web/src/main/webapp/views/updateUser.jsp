@@ -1,6 +1,4 @@
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
-<%@ page import="com.tw.core.entity.User" %>
-<%@ page import="java.util.List" %>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
@@ -16,15 +14,14 @@
 <head>
     <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jQuery" />
     <script src="${jQuery}"></script>
-    <%--<spring:url value="/lib/js/user.js" var="user" />--%>
-    <%--<script src="${user}"></script>--%>
+    <spring:url value="/lib/js/user.js" var="userJs" />
+    <script src="${userJs}"></script>
     <title></title>
 </head>
 <body>
 
 <h3>更新用户信息</h3>
 
-<%--<form id="updateUserInfoForm" method="post" action="/web/users/update">--%>
 <form id="updateUserInfoForm">
 
     <input id="idInput" type="text" name="id" value="${user.userId}" hidden="hidden" />
@@ -38,23 +35,6 @@
     <input style="border-color: wheat"  type="submit" value="确定" />
 
 </form>
-
-<script type="text/javascript">
-    var frm = $('#updateUserInfoForm');
-    var id = $('#idInput').val();
-    frm.submit(function (ev) {
-        $.ajax({
-            type: "PUT",
-            url: "/web/users/"+id,
-            data: frm.serialize(),
-            success: function (data) {
-                alert('更新信息成功');
-            }
-        });
-
-        ev.preventDefault();
-    });
-</script>
 
 </body>
 </html>
