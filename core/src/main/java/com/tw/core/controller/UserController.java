@@ -87,13 +87,22 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateUser(@RequestParam String name,String gender,String mailbox,int age,int id,String password) {
+//    @RequestMapping(value = "/update", method = RequestMethod.POST)
+//    public ModelAndView updateUser(@RequestParam String name,String gender,String mailbox,int age,int id,String password) {
+//
+//        User user = new User(id, name, gender, mailbox, age, password);
+//
+//        userService.updateUser(user);
+//
+//        return new ModelAndView("redirect:/users");
+//    }
+@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+public String updateUser(@PathVariable int id,@RequestParam String name,String gender,String mailbox,int age,String password) {
 
-        User user = new User(id, name, gender, mailbox, age, password);
+    User user = new User(id, name, gender, mailbox, age, password);
 
-        userService.updateUser(user);
+    userService.updateUser(user);
 
-        return new ModelAndView("redirect:/users");
-    }
+    return "hello";
+}
 }

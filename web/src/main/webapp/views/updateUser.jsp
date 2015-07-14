@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/tags"  prefix="spring"%>
 <%@ page import="com.tw.core.entity.User" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c"
@@ -13,15 +14,20 @@
          pageEncoding="UTF-8"%>
 <html>
 <head>
+    <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jQuery" />
+    <script src="${jQuery}"></script>
+    <%--<spring:url value="/lib/js/user.js" var="user" />--%>
+    <%--<script src="${user}"></script>--%>
     <title></title>
 </head>
 <body>
 
 <h3>更新用户信息</h3>
 
-<form action="/web/users/update" method="post">
+<%--<form id="updateUserInfoForm" method="post" action="/web/users/update">--%>
+<form id="updateUserInfoForm">
 
-    <input type="text" name="id" value="${user.userId}" hidden="hidden" />
+    <input id="idInput" type="text" name="id" value="${user.userId}" hidden="hidden" />
 
     姓   名: <input style="border-color: pink" type="text" name="name" value="${user.name}">
     性   别:男<input name="gender" type="radio" value="男" <c:if test="${user.gender == '男'}">checked </c:if>/>
@@ -32,6 +38,23 @@
     <input style="border-color: wheat"  type="submit" value="确定" />
 
 </form>
+
+<script type="text/javascript">
+    var frm = $('#updateUserInfoForm');
+    var id = $('#idInput').val();
+    frm.submit(function (ev) {
+        $.ajax({
+            type: "PUT",
+            url: "/web/users/"+id,
+            data: frm.serialize(),
+            success: function (data) {
+                alert('更新信息成功');
+            }
+        });
+
+        ev.preventDefault();
+    });
+</script>
 
 </body>
 </html>
