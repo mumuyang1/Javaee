@@ -15,22 +15,6 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String name, String gender, String mailbox, int age) {
-        this.userId = userId;
-        this.name = name;
-        this.gender = gender;
-        this.mailbox = mailbox;
-        this.age = age;
-    }
-
-    public User(String name, String gender, String mailbox, int age) {
-
-        this.name = name;
-        this.gender = gender;
-        this.mailbox = mailbox;
-        this.age = age;
-    }
-
     public int getUserId() {
         return userId;
     }

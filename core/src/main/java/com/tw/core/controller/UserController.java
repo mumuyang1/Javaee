@@ -88,9 +88,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateUser(@RequestParam String name,String gender,String mailbox,int age,int id) {
+    public ModelAndView updateUser(@RequestParam String name,String gender,String mailbox,int age,int id,String password) {
 
-        User user = new User(id, name, gender, mailbox, age);
+        User user = new User(id, name, gender, mailbox, age, password);
 
         userService.updateUser(user);
 
