@@ -23,28 +23,28 @@ public class UserController {
     public ModelAndView showIndex(HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
-        String user = (String)session.getAttribute("user");
+        String user = (String) session.getAttribute("user");
 
-        if (user == "login"){
+        if (user == "login") {
             modelAndView.setViewName("index");
-            modelAndView.addObject("userList",userService.getUsers());
+            modelAndView.addObject("userList", userService.getUsers());
             return modelAndView;
-        }else {
+        } else {
 
             modelAndView.setViewName("login");
-            return  modelAndView;
+            return modelAndView;
         }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus( HttpStatus.OK )
-    public void deleteUser(@PathVariable( "id" ) int id) {
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUser(@PathVariable("id") int id) {
 
         userService.deleteUserBy(id);
     }
 
     @RequestMapping(value = "/creation", method = RequestMethod.POST)
-    public ModelAndView insertUser(@RequestParam String name,String gender,String mailbox,int age,String password) {
+    public ModelAndView insertUser(@RequestParam String name, String gender, String mailbox, int age, String password) {
 
         User user = new User(name, gender, mailbox, age, password);
 
@@ -54,15 +54,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/creation", method = RequestMethod.GET)
-    public ModelAndView  getInsertPage( HttpSession session) {
+    public ModelAndView getInsertPage(HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
-        String user = (String)session.getAttribute("user");
+        String user = (String) session.getAttribute("user");
 
-        if(user == "login"){
+        if (user == "login") {
             modelAndView.setViewName("insertUser");
             return modelAndView;
-        }else {
+        } else {
             modelAndView.setViewName("login");
             return modelAndView;
         }
@@ -73,36 +73,25 @@ public class UserController {
     public ModelAndView getUserById(@PathVariable int id, HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
-        String user = (String)session.getAttribute("user");
+        String user = (String) session.getAttribute("user");
 
-        if(user == "login"){
+        if (user == "login") {
             modelAndView.setViewName("updateUser");
 
             modelAndView.addObject("user", userService.getUserBy(id));
             return modelAndView;
-        }else {
+        } else {
             modelAndView.setViewName("login");
             return modelAndView;
         }
     }
 
 
-//    @RequestMapping(value = "/update", method = RequestMethod.POST)
-//    public ModelAndView updateUser(@RequestParam String name,String gender,String mailbox,int age,int id,String password) {
-//
-//        User user = new User(id, name, gender, mailbox, age, password);
-//
-//        userService.updateUser(user);
-//
-//        return new ModelAndView("redirect:/users");
-//    }
-@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-public String updateUser(@PathVariable int id,@RequestParam String name,String gender,String mailbox,int age,String password) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateUser(@PathVariable int id, @RequestParam String name, String gender, String mailbox, int age, String password) {
 
-    User user = new User(id, name, gender, mailbox, age, password);
+        User user = new User(id, name, gender, mailbox, age, password);
 
-    userService.updateUser(user);
-
-    return "hello";
-}
+        userService.updateUser(user);
+    }
 }

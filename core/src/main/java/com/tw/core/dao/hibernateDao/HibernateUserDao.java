@@ -47,6 +47,7 @@ public class HibernateUserDao {
 
     public void updateUser(User user) {
 
+        user.setPassword(MD5Util.md5(user.getPassword()));
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
