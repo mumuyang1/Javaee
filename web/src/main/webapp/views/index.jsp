@@ -23,7 +23,7 @@
     <td>删除</td>
     <td>更新用户信息</td>
   </tr>
-  <c:forEach var = "user" items="${usersList}" >
+  <c:forEach var = "user" items="${userList}" >
   <tr align="center">
     <td><c:out value="${user.name}" /></td>
     <td><c:out value="${user.gender}" /></td>

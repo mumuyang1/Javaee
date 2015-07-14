@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -22,27 +23,38 @@ public class loginController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView getLoginPage() {
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
 
-        return modelAndView;
+       return modelAndView;
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ModelAndView getLogin(@RequestParam String name, String password,HttpSession session) {
+    public ModelAndView getLogin(@RequestParam String name, String password,HttpSession session, HttpServletRequest request) {
 
         ModelAndView modelAndView= new ModelAndView();
-        System.out.println(session.getId()+"--------------------------------");
 
         if(userService.login(name, password)){
 
-            System.out.println("登陆成功+++++++++++++++");
             session.setAttribute("user", "login");
-            //setting session to expiry in 30 mins
-            ModelAndView modelAndView1 = new ModelAndView("redirect:/users");
-            modelAndView.addObject("user",name);
+            String fromUrl = request.getHeader("referer");
 
-            return modelAndView1;
+            if (fromUrl.equals("http://localhost:8080/web/")){
+
+                System.out.println("相等  ");
+                ModelAndView modelAndView1 = new ModelAndView("redirect:/users");
+                modelAndView.addObject("user",name);
+
+                return modelAndView1;
+            }else {
+
+                ModelAndView modelAndView1 = new ModelAndView("redirect:"+fromUrl);
+                modelAndView.addObject("user",name);
+
+                return modelAndView1;
+            }
+
         }else{
 
             System.out.println("登录失败+++++++++++++++++++");

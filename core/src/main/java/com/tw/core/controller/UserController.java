@@ -21,17 +21,24 @@ public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView showIndex(HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-//        modelAndView.addObject( " 需要放到 model 中的属性名称 " , " 对应的属性值，它是一个对象 " );
-        modelAndView.addObject( "usersList" , userService.getUsers());
 
-        return modelAndView;
+        ModelAndView modelAndView = new ModelAndView();
+        String user = (String)session.getAttribute("user");
+
+        if (user == "login"){
+            modelAndView.setViewName("index");
+            modelAndView.addObject("userList",userService.getUsers());
+            return modelAndView;
+        }else {
+
+            modelAndView.setViewName("login");
+            return  modelAndView;
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus( HttpStatus.OK )
-    public void deleteUser(@PathVariable( "id" ) int id) {
+    public void deleteUser(@PathVariable( "id" ) int id,HttpSession session) {
 
         userService.deleteUserBy(id);
     }
@@ -57,13 +64,20 @@ public class UserController {
 
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView getUserById(@RequestParam int userId) {
+    public ModelAndView getUserById(@RequestParam int userId, HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("updateUser");
+        String user = (String)session.getAttribute("user");
 
-        modelAndView.addObject("user", userService.getUserBy(userId));
-        return modelAndView;
+        if(user == "login"){
+            modelAndView.setViewName("updateUser");
+
+            modelAndView.addObject("user", userService.getUserBy(userId));
+            return modelAndView;
+        }else {
+            modelAndView.setViewName("login");
+            return modelAndView;
+        }
     }
 
 
