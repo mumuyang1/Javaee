@@ -80,19 +80,13 @@ public class HibernateUserDao {
 
         Long count = (Long)query.uniqueResult();
 
-        System.out.println(count);
-
-        if (count == 0){
-            return false;
-        }
         session.getTransaction().commit();
 
-        return  true;
+        return count != 0;
     }
 
     public static void main(String[] args){
 
-        System.out.println(new HibernateUserDao().login("薛倩","123456"));
+        System.out.println(new HibernateUserDao().login("苏开","suka"));
     }
-
 }
