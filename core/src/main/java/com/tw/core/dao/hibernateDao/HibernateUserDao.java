@@ -33,14 +33,12 @@ public class HibernateUserDao {
 
     public List<User> getUsers() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//        Session session = HibernateUtil.getSessionFactory().openSession();
+
         session.beginTransaction();
         Query query = session.createQuery("from User");
 
         List<User> userList = query.list();
         session.getTransaction().commit();
-//        HibernateUtil.getSessionFactory().close();使用单例时，只会query一次
-//        session.close();
 
         return userList;
     }
