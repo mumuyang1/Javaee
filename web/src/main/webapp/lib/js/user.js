@@ -20,7 +20,7 @@ $(document).ready(function() {
             url: "/web/users/" + id,
             data: frm.serialize(),
             success: function (data) {
-                alert('更新信息成功');
+                window.location = "http://localhost:8080/web/users";
             }
         });
         ev.preventDefault();
