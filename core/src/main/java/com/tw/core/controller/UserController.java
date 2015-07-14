@@ -38,7 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus( HttpStatus.OK )
-    public void deleteUser(@PathVariable( "id" ) int id,HttpSession session) {
+    public void deleteUser(@PathVariable( "id" ) int id) {
 
         userService.deleteUserBy(id);
     }
@@ -63,8 +63,8 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView getUserById(@RequestParam int userId, HttpSession session) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView getUserById(@PathVariable int id,HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
         String user = (String)session.getAttribute("user");
@@ -72,7 +72,7 @@ public class UserController {
         if(user == "login"){
             modelAndView.setViewName("updateUser");
 
-            modelAndView.addObject("user", userService.getUserBy(userId));
+            modelAndView.addObject("user", userService.getUserBy(id));
             return modelAndView;
         }else {
             modelAndView.setViewName("login");

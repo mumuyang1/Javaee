@@ -31,7 +31,7 @@
     <td><c:out value="${user.age}" /></td>
     <td><a href="javascript:;"onclick="deleteUser(<c:out value="${user.userId}" />);">删除</a></td>
     <td>
-      <button type="button" style="border-color: white" align="center" onclick="location = '/web/users/update?userId=<c:out value="${user.userId}"/>'">更新用户信息</button>
+      <button type="button" style="border-color: white" align="center" onclick="location = '/web/users/<c:out value="${user.userId}"/>'">更新用户信息</button>
                </td>
    </tr>
   </c:forEach>

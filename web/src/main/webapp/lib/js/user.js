@@ -1,4 +1,5 @@
 function deleteUser(id) {
+
     $.ajax({
         url: '/web/users/'+id,
         type: 'DELETE',
