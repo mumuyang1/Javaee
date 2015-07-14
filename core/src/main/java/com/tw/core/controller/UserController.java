@@ -43,10 +43,10 @@ public class UserController {
         userService.deleteUserBy(id);
     }
 
-    @RequestMapping(value = "/insertUser", method = RequestMethod.POST)
-    public ModelAndView insertUser(@RequestParam String name,String gender,String mailbox,int age) {
+    @RequestMapping(value = "/creation", method = RequestMethod.POST)
+    public ModelAndView insertUser(@RequestParam String name,String gender,String mailbox,int age,String password) {
 
-        User user = new User(name, gender, mailbox, age);
+        User user = new User(name, gender, mailbox, age, password);
 
         userService.insertUser(user);
 
@@ -54,17 +54,24 @@ public class UserController {
     }
 
     @RequestMapping(value = "/insertUser", method = RequestMethod.GET)
-    public ModelAndView  getInsertPage() {
+    public ModelAndView  getInsertPage( HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("insertUser");
+        String user = (String)session.getAttribute("user");
 
-        return modelAndView;
+        if(user == "login"){
+
+            modelAndView.setViewName("insertUser");
+            return modelAndView;
+        }else {
+            modelAndView.setViewName("login");
+            return modelAndView;
+        }
     }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserById(@PathVariable int id,HttpSession session) {
+    public ModelAndView getUserById(@PathVariable int id, HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
         String user = (String)session.getAttribute("user");

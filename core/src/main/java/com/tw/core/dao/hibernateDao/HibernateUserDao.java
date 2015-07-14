@@ -15,6 +15,7 @@ public class HibernateUserDao {
 
     public void insertUser(User user) {
 
+        user.setPassword(MD5Util.md5(user.getPassword()));
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
@@ -74,7 +75,7 @@ public class HibernateUserDao {
         Query query = session.createQuery("SELECT count(*) FROM User user where user.name = :name and user.password = :password");
 
         query.setParameter("name", name);
-        query.setParameter("password", password);
+        query.setParameter("password", MD5Util.md5(password));
 
         Long count = (Long)query.uniqueResult();
 

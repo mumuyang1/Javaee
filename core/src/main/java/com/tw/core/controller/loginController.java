@@ -42,7 +42,6 @@ public class loginController {
 
             if (fromUrl.equals("http://localhost:8080/web/")){
 
-                System.out.println("相等  ");
                 ModelAndView modelAndView1 = new ModelAndView("redirect:/users");
                 modelAndView.addObject("user",name);
 
@@ -54,7 +53,6 @@ public class loginController {
 
                 return modelAndView1;
             }
-
         }else{
 
             System.out.println("登录失败+++++++++++++++++++");
