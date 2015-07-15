@@ -33,7 +33,6 @@
     年   龄: <input style="border-color: pink" type="number" min="1" max="110" name="age" value="${user.age}"/>
     密   码: <input style="border-color: pink" type="password" name="password" value="${user.password}"/>
     <input style="border-color: wheat"  type="submit" value="确定" />
-
 </form>
 
 </body>
