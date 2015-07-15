@@ -2,13 +2,12 @@ package com.tw.core.controller;
 
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -27,37 +26,56 @@ public class loginController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
 
-       return modelAndView;
+        return modelAndView;
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ModelAndView getLogin(@RequestParam String name, String password,HttpSession session, HttpServletRequest request) {
+    public ModelAndView getLogin(@CookieValue("url") String fromUrl,@RequestParam String name, String password, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 
-        ModelAndView modelAndView= new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView();
 
-        if(userService.login(name, password)){
+        System.out.println(fromUrl+"2222222");
+
+        if (userService.login(name, password)) {
 
             session.setAttribute("user", "login");
-            String fromUrl = request.getHeader("referer");
 
-            if (fromUrl.equals("http://localhost:8080/web/")){
+            if (fromUrl.equals("http://localhost:8080/web/")) {
 
                 ModelAndView modelAndView1 = new ModelAndView("redirect:/users");
-                modelAndView.addObject("user",name);
+                modelAndView.addObject("user", name);
 
                 return modelAndView1;
-            }else {
+            } else {
 
-                ModelAndView modelAndView1 = new ModelAndView("redirect:"+fromUrl);
-                modelAndView.addObject("user",name);
+                ModelAndView modelAndView1 = new ModelAndView("redirect:" + fromUrl);
+                eraseCookie(request, response);
 
+                modelAndView.addObject("user", name);
+
+                Cookie cookie = new Cookie("url",fromUrl);
+                cookie.setPath("/");
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+
+            System.out.println(fromUrl+"3333333333");
                 return modelAndView1;
             }
-        }else{
+        } else {
 
             System.out.println("登录失败+++++++++++++++++++");
             return new ModelAndView("redirect:/");
         }
     }
 
+    private void eraseCookie(HttpServletRequest req, HttpServletResponse resp) {
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null)
+            for (int i = 0; i < cookies.length; i++) {
+                cookies[i].setValue(null);
+                cookies[i].setPath("/");
+                cookies[i].setMaxAge(0);
+                resp.addCookie(cookies[i]);
+            }
+    }
 }
