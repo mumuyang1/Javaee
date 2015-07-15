@@ -14,8 +14,8 @@
 <head>
     <spring:url value="/lib/js/jquery-1.11.1.min.js" var="jQuery" />
     <script src="${jQuery}"></script>
-    <spring:url value="/lib/js/user.js" var="userJs" />
-    <script src="${userJs}"></script>
+    <spring:url value="/lib/js/updateUser.js" var="updateUserJs" />
+    <script src="${updateUserJs}"></script>
     <title></title>
 </head>
 <body>

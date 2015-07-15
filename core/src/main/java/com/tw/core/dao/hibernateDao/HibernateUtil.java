@@ -19,13 +19,4 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-//    public static SessionFactory getSessionFactory() {
-//        //读取hibernate.cfg.xml文件
-//        Configuration configuration = new Configuration().configure();
-//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
-//                applySettings(configuration.getProperties());
-//        SessionFactory factory = configuration.buildSessionFactory(builder.build());
-//
-//        return factory;
-//    }
 }
