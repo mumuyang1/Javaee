@@ -2,6 +2,7 @@ package com.tw.core.controller;
 
 import com.tw.core.entity.User;
 import com.tw.core.service.UserService;
+import com.tw.core.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView showIndex(HttpSession session,HttpServletRequest request,HttpServletResponse response) {
+    public ModelAndView showIndex(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView modelAndView = new ModelAndView();
         String user = (String) session.getAttribute("user");
@@ -35,8 +36,7 @@ public class UserController {
         } else {
 
             modelAndView.setViewName("login");
-
-            addCurrentURLToCookies(request,response);
+            CookieUtil.addCurrentURLToCookies(request, response);
             return modelAndView;
         }
     }
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/creation", method = RequestMethod.GET)
-    public ModelAndView getInsertPage(HttpSession session,HttpServletRequest request,HttpServletResponse response) {
+    public ModelAndView getInsertPage(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView modelAndView = new ModelAndView();
         String user = (String) session.getAttribute("user");
@@ -69,14 +69,13 @@ public class UserController {
             return modelAndView;
         } else {
             modelAndView.setViewName("login");
-            addCurrentURLToCookies(request,response);
+            CookieUtil.addCurrentURLToCookies(request, response);
             return modelAndView;
         }
     }
 
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserById(@PathVariable int id, HttpSession session,HttpServletRequest request,HttpServletResponse response) {
+    public ModelAndView getUserById(@PathVariable int id, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView modelAndView = new ModelAndView();
         String user = (String) session.getAttribute("user");
@@ -86,13 +85,12 @@ public class UserController {
             modelAndView.addObject("user", userService.getUserBy(id));
             return modelAndView;
         } else {
-            addCurrentURLToCookies(request,response);
+            CookieUtil.addCurrentURLToCookies(request, response);
 
             modelAndView.setViewName("login");
             return modelAndView;
         }
     }
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public void updateUser(@PathVariable int id, @RequestParam String name, String gender, String mailbox, int age, String password) {
@@ -101,10 +99,6 @@ public class UserController {
 
         userService.updateUser(user);
     }
-    public void addCurrentURLToCookies(HttpServletRequest request,HttpServletResponse response){
 
-        Cookie url = new Cookie("url", request.getRequestURL().toString());
-        url.setPath("/");
-        response.addCookie(url);
-    }
+
 }

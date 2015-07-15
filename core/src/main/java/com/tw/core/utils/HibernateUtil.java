@@ -1,4 +1,4 @@
-package com.tw.core.dao.hibernateDao;
+package com.tw.core.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

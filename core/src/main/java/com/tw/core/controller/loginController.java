@@ -1,6 +1,7 @@
 package com.tw.core.controller;
 
 import com.tw.core.service.UserService;
+import com.tw.core.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,10 +22,11 @@ public class loginController {
     private UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView getLoginPage() {
+    public ModelAndView getLoginPage(HttpServletResponse response, HttpServletRequest request) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+        CookieUtil.addCurrentURLToCookies(request, response);
 
         return modelAndView;
     }
@@ -33,8 +35,6 @@ public class loginController {
     public ModelAndView getLogin(@CookieValue("url") String fromUrl,@RequestParam String name, String password, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 
         ModelAndView modelAndView = new ModelAndView();
-
-        System.out.println(fromUrl+"2222222");
 
         if (userService.login(name, password)) {
 
@@ -49,16 +49,9 @@ public class loginController {
             } else {
 
                 ModelAndView modelAndView1 = new ModelAndView("redirect:" + fromUrl);
-                eraseCookie(request, response);
 
-                modelAndView.addObject("user", name);
+                deleteFromUrlInCookie(response,fromUrl);
 
-                Cookie cookie = new Cookie("url",fromUrl);
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-
-            System.out.println(fromUrl+"3333333333");
                 return modelAndView1;
             }
         } else {
@@ -68,14 +61,11 @@ public class loginController {
         }
     }
 
-    private void eraseCookie(HttpServletRequest req, HttpServletResponse resp) {
-        Cookie[] cookies = req.getCookies();
-        if (cookies != null)
-            for (int i = 0; i < cookies.length; i++) {
-                cookies[i].setValue(null);
-                cookies[i].setPath("/");
-                cookies[i].setMaxAge(0);
-                resp.addCookie(cookies[i]);
-            }
+    private void deleteFromUrlInCookie(HttpServletResponse response, String todeleteUrl) {
+
+        Cookie cookie = new Cookie("url",todeleteUrl);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 }

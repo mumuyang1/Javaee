@@ -1,6 +1,7 @@
 package com.tw.core.dao.hibernateDao;
 
 import com.tw.core.entity.User;
+import com.tw.core.utils.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
